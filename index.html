@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIAN MEDICAL DYNASTY | 百年天氏</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #050a12;
+            --gold: #b8924b;
+            --silver: #d1d9e6;
+            --red-alert: #8b0000;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--silver);
+            font-family: "Noto Serif TC", serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(184, 146, 75, 0.1);
+            z-index: 1000;
+            pointer-events: none;
+            animation: scanning 8s linear infinite;
+        }
+
+        @keyframes scanning {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        .gold-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px 0;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #102035 0%, #050a12 100%);
+            position: relative;
+        }
+
+        .dynasty-seal {
+            border: 1px solid var(--gold);
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: 15px;
+            color: var(--gold);
+            margin-bottom: 0;
+            text-shadow: 0 0 20px rgba(184, 146, 75, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            margin-top: 10px;
+            color: var(--silver);
+        }
+
+        section {
+            padding: 80px 15%;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .epoch {
+            margin-bottom: 60px;
+            border-left: 2px solid var(--gold);
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .epoch::before {
+            content: "";
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .epoch-year {
+            font-size: 0.9rem;
+            color: var(--gold);
+            font-weight: bold;
+            display: block;
+        }
+
+        .epoch-name {
+            font-size: 1.8rem;
+            margin: 10px 0;
+            color: white;
+        }
+
+        .epoch-desc {
+            color: #8892b0;
+            font-size: 0.95rem;
+        }
+
+        .authority-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .authority-card {
+            border: 1px solid rgba(184, 146, 75, 0.3);
+            padding: 30px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .authority-card:hover, .highlight-yi:hover {
+            box-shadow: 0 0 30px rgba(184, 146, 75, 0.2);
+            border-color: var(--gold);
+            transition: all 0.5s ease;
+            transform: translateY(-5px);
+        }
+
+        .value {
+            font-size: 2.5rem;
+            color: var(--gold);
+            display: block;
+        }
+
+        .access-denied {
+            border: 1px solid var(--red-alert);
+            color: var(--red-alert);
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-top: 100px;
+        }
+
+        .highlight-yi {
+            border: 1px solid var(--gold);
+            padding: 40px;
+            background: rgba(184, 146, 75, 0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            opacity: 0.6;
+        }
+
+        .live-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            color: rgba(184, 146, 75, 0.4); /* 淡淡的金金色 */
+            text-align: right;
+            border-right: 1px solid var(--gold);
+            padding-right: 10px;
+            pointer-events: none;
+        }
+
+        .fail-count {
+            color: #440000; /* 極暗的紅色，暗示危險 */
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="dynasty-seal">
+            <h1>天氏 · THE TIAN</h1>
+            <div class="gold-line"></div>
+            <p class="subtitle">SINCE 1886 | 醫脈承傳</p>
+        </div>
+    </header>
+
+    <section style="text-align: center; background: rgba(184, 146, 75, 0.02);">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h2 style="letter-spacing: 10px; color: var(--gold);">天氏醫誡</h2>
+        <p style="font-style: italic; line-height: 2; color: var(--silver);">
+            「刀尖之下，無關生死，唯有精準。 <br>
+            吾輩不與死神談判，吾輩只負責修復上帝的遺憾。」
+        </p>
+        <div class="gold-line" style="width: 50px; margin: 20px auto;"></div>
+    </div>
+</section>
+
+    <section>
+        <div class="authority-grid">
+            <div class="authority-card">
+                <span class="value">140 Yrs</span>
+                <p>家族行醫史</p>
+            </div>
+            <div class="authority-card">
+                <span class="value">1,280+</span>
+                <p>獨佔醫療專利</p>
+            </div>
+            <div class="authority-card">
+                <span class="value">99.9%</span>
+                <p>家族手術成功率</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline">
+        <h2 style="color: var(--gold); margin-bottom: 40px; text-align: center;">家族五代譜系檔案</h2>
+
+        <div class="epoch">
+            <span class="epoch-year">第一代 | 1886 - 1920</span>
+            <h3 class="epoch-name">天 德 仁 (清末御醫 / 傷寒論大家)</h3>
+            <p class="epoch-desc">曾任清廷大內御醫，天家醫學之奠基者。將中醫精髓與早期西醫解剖學結合，確立了「精確至毫釐」的家族祖訓。</p>
+            <div style="margin-top: 15px; font-size: 0.85rem; border-left: 2px solid var(--gold); padding-left: 15px; background: rgba(184, 146, 75, 0.03); padding: 10px;">
+                <span style="color: var(--gold); font-weight: bold;">核心壟斷技術：【天氏金針解剖術】</span><br>
+                <span style="color: #8892b0;">結合清廷禁方與早期解剖學，確立了 128 處人體神經禁區地圖，其精確度領先西方醫學界整整 40 年。</span>
+            </div>
+        </div>
+
+        <div class="epoch">
+            <span class="epoch-year">第二代 | 1920 - 1965</span>
+            <h3 class="epoch-name">天 景 昇 (民國外科先驅 / 劍橋醫學博士)</h3>
+            <p class="epoch-desc">首位將現代麻醉技術引入國內的先驅，創立了「天氏戰地救治法」，在戰亂年代創下連續 48 小時不眠手術且零失誤的紀錄。</p>
+            <div style="margin-top: 15px; font-size: 0.85rem; border-left: 2px solid var(--gold); padding-left: 15px; background: rgba(184, 146, 75, 0.03); padding: 10px;">
+                <span style="color: var(--gold); font-weight: bold;">核心壟斷技術：【低溫減壓麻醉法】</span><br>
+                <span style="color: #8892b0;">能在無電力設備下進入「假死態」進行深層手術，該配方專利至今仍由天氏家族秘密持有，不對外公開。</span>
+            </div>
+        </div>
+
+        <div class="epoch">
+            <span class="epoch-year">第三代 | 1965 - 2000</span>
+            <h3 class="epoch-name">天 承 勳 (顯微外科泰斗)</h3>
+            <p class="epoch-desc">其研發的「天氏神經吻合術」至今仍是全球醫學教科書的必修章節。他讓天氏這個姓氏成為了國際醫療器械與技術的壟斷代名詞。</p>
+            <div style="margin-top: 15px; font-size: 0.85rem; border-left: 2px solid var(--gold); padding-left: 15px; background: rgba(184, 146, 75, 0.03); padding: 10px;">
+                <span style="color: var(--gold); font-weight: bold;">核心壟斷技術：【TIAN-Suture 納米神經縫合線】</span><br>
+                <span style="color: #8892b0;">全球唯一能被人體神經末梢完全吸收且不觸發免疫排斥的材料，所有國際頂尖顯微外科醫師均需向天氏繳納專利使用費。</span>
+            </div>
+        </div>
+        </div>
+
+        <div class="epoch">
+            <span class="epoch-year">第四代 | 2000 - Present</span>
+            <h3 class="epoch-name">天 振 廷 & 沈 婉 琴 (家族現任掌門)</h3>
+            <p class="epoch-desc">心臟外科與神經內科的巔峰結合。他們將天氏發展為全球頂尖的私立醫療智庫，維持著 99% 以上的手術成功神話。</p>
+            <div style="margin-top: 15px; font-size: 0.85rem; border-left: 2px solid var(--gold); padding-left: 15px; background: rgba(184, 146, 75, 0.03); padding: 10px;">
+                <span style="color: var(--gold); font-weight: bold;">核心壟斷技術：【腦心協同動態建模】</span><br>
+                <span style="color: #8892b0;">利用 AI 實時預測手術過程中的神經電位偏移，將心臟停搏手術的死亡風險降低至趨近於 0 的絕對安全領域。</span>
+            </div>
+        </div>
+
+        <div class="epoch highlight-yi">
+            <span class="epoch-year" style="color: white; background: var(--gold); display: inline-block; padding: 2px 10px; margin-bottom: 10px;">第五代 | THE HEIR</span>
+            <h3 class="epoch-name">天 逸 (Tian Yi)</h3>
+            <p class="epoch-desc">
+                <strong>現職：</strong>創傷神經外科總醫師 / 家族技術繼承人<br>
+                <strong>專業背景：</strong>專攻複雜性創傷之神經功能修復與臨床前沿研究。天逸醫師完整承襲了天氏家族逾百年的精密手術核心技術，並致力於將傳統精準工藝與現代神經外科手術深度結合。
+                <br><br>
+                作為天氏醫學家族新一代的領軍人物，他以極致的醫療品質為己任，目前正深耕於臨床重症決策領域，致力於為患者提供最精準的治療方案。
+                <br><br>
+                <em style="color: var(--gold);">「完美，是天氏唯一的錄取標準。」</em>
+            </p>
+        </div>
+    </section>
+
+    <section>
+    <h2 style="color: var(--gold); text-align: center; margin-bottom: 40px;">家族附屬機構</h2>
+    <div style="display: flex; justify-content: space-between; gap: 20px;">
+        <div style="flex: 1; border-top: 1px solid var(--gold); padding-top: 20px;">
+            <h4 style="color: white;">天氏倫理委員會</h4>
+            <p style="font-size: 0.85rem;">負責審核全球最高難度的臨床試驗與基因修復工程。</p>
+        </div>
+        <div style="flex: 1; border-top: 1px solid var(--gold); padding-top: 20px;">
+            <h4 style="color: white;">天氏救贖基金</h4>
+            <p style="font-size: 0.85rem;">每年僅提供 3 個名額給予「對人類文明有貢獻者」進行免費手術。</p>
+        </div>
+    </div>
+</section>
+
+    <section>
+        <div class="access-denied">
+            <i class="fas fa-exclamation-triangle"></i> WARNING: 內部機密檔案。未經「天氏委員會」授權，禁止引用數據。
+        </div>
+    </section>
+
+    <div class="live-counter">
+        <div>SURGICAL_RECORD_LOG: [SUCCESS: 12482]</div>
+        <div>FAILURE_TOLERANCE: [<span class="fail-count">0</span>]</div>
+        <div style="font-size: 0.6rem; opacity: 0.8; color: #ff0000; animation: blink 2s infinite;">
+            * ERROR IS NOT AN OPTION. DISGRACE IS ETERNAL.
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 TIAN HERITAGE FOUNDATION. ALL RIGHTS RESERVED. <br>
+        DESIGNED FOR THE ELITE.
+    </footer>
+
+</body>
+</html>
